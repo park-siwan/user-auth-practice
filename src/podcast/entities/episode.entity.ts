@@ -8,18 +8,18 @@ import { Podcast } from './podcast.entity';
 @ObjectType()
 export class Episode extends CoreEntity {
   @Column()
-  @Field(type => String)
+  @Field((type) => String)
   @IsString()
   title: string;
 
   @Column()
-  @Field(type => String)
+  @Field((type) => String)
   @IsString()
   category: string;
 
-  @ManyToOne(() => Podcast, podcast => podcast.episodes, {
+  @ManyToOne(() => Podcast, (podcast) => podcast.episodes, {
     onDelete: 'CASCADE',
   })
-  @Field(type => Podcast)
+  @Field((type) => Podcast)
   podcast: Podcast;
 }
