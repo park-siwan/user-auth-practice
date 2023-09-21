@@ -4,7 +4,7 @@ import { UserService } from './users.service';
 import {
   CreateAccountInput,
   CreateAccountOutput,
-} from './dtos/Create-account.dto';
+} from './dtos/create-account.dto';
 import { LoginInput, LoginOutput } from './dtos/login.dto';
 import { UseGuards } from '@nestjs/common';
 import { AuthGuard } from 'src/auth/auth.guard';
