@@ -50,7 +50,7 @@ export class UserResolver {
 
   @Query(() => User)
   @UseGuards(AuthGuard)
-  me(@AuthUser() authUser: User) {
+  seeProfile(@AuthUser() authUser: User) {
     return authUser;
   }
 
