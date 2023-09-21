@@ -7,6 +7,7 @@ import { PodcastsModule } from './podcast/podcasts.module';
 import { Podcast } from './podcast/entities/podcast.entity';
 import { Episode } from './podcast/entities/episode.entity';
 import { ApolloDriver } from '@nestjs/apollo';
+import { UsersModule } from './users/users.module';
 
 @Module({
   imports: [
@@ -19,6 +20,7 @@ import { ApolloDriver } from '@nestjs/apollo';
     }),
     GraphQLModule.forRoot({ autoSchemaFile: true, driver: ApolloDriver }),
     PodcastsModule,
+    UsersModule,
   ],
   controllers: [AppController],
   providers: [AppService],
