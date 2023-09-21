@@ -17,9 +17,14 @@ import { JwtModule } from './jwt/jwt.module';
 import { JwtMiddleware } from './jwt/jwt.middleware';
 import { CommonModule } from './common/common.module';
 import { User } from './users/entities/user.entity';
+import { ConfigModule } from '@nestjs/config';
 
 @Module({
   imports: [
+    ConfigModule.forRoot({
+      isGlobal: true,
+      envFilePath: '.env.dev',
+    }),
     TypeOrmModule.forRoot({
       type: 'sqlite',
       database: 'db.sqlite3',
