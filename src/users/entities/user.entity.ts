@@ -9,10 +9,11 @@ import { CoreEntity } from 'src/podcast/entities/core.entity';
 import { BeforeInsert, BeforeUpdate, Column, Entity } from 'typeorm';
 import * as bcrypt from 'bcrypt';
 import { InternalServerErrorException } from '@nestjs/common';
+
 enum UserRole {
-  Client,
-  Owner,
-  Delivery,
+  Client = 'Client',
+  Owner = 'Owner',
+  Delivery = 'Delivery',
 }
 registerEnumType(UserRole, { name: 'UserRole' });
 
@@ -29,8 +30,8 @@ export class User extends CoreEntity {
   @Field(() => String)
   password: string;
 
-  @Column({ type: 'enum', enum: UserRole })
-  @Field(() => String)
+  @Column({ type: 'text' })
+  @Field(() => UserRole)
   @IsEnum(UserRole)
   role: UserRole;
 

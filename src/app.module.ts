@@ -16,6 +16,7 @@ import { UsersModule } from './users/users.module';
 import { JwtModule } from './jwt/jwt.module';
 import { JwtMiddleware } from './jwt/jwt.middleware';
 import { CommonModule } from './common/common.module';
+import { User } from './users/entities/user.entity';
 
 @Module({
   imports: [
@@ -24,7 +25,7 @@ import { CommonModule } from './common/common.module';
       database: 'db.sqlite3',
       synchronize: true,
       logging: true,
-      entities: [Podcast, Episode],
+      entities: [Podcast, Episode, User],
     }),
     GraphQLModule.forRoot({
       autoSchemaFile: true,
