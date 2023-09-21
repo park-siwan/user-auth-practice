@@ -14,7 +14,7 @@ import { EditProfileInput, EditProfileOutput } from './dtos/edit-profile.dto';
 
 @Resolver(() => User)
 export class UserResolver {
-  constructor(private readonly userService: UserService) {}
+  constructor(private readonly usersService: UserService) {}
 
   @Mutation(() => CreateAccountOutput)
   async createAccount(
@@ -22,7 +22,7 @@ export class UserResolver {
   ): Promise<CreateAccountOutput> {
     try {
       const { ok, error } =
-        await this.userService.createAccount(createAccountInput);
+        await this.usersService.createAccount(createAccountInput);
       return {
         ok,
         error,
@@ -38,7 +38,7 @@ export class UserResolver {
   @Mutation(() => LoginOutput)
   async login(@Args('input') loginInput: LoginInput): Promise<LoginOutput> {
     try {
-      const { ok, error, token } = await this.userService.login(loginInput);
+      const { ok, error, token } = await this.usersService.login(loginInput);
       return { ok, error, token };
     } catch (error) {
       return {
@@ -60,7 +60,7 @@ export class UserResolver {
     @Args() userProfileInput: UserProfileInput,
   ): Promise<UserProfileOutput> {
     try {
-      const user = await this.userService.findById(userProfileInput.userId);
+      const user = await this.usersService.findById(userProfileInput.userId);
       if (!user) {
         throw new Error();
       }
@@ -83,7 +83,7 @@ export class UserResolver {
     @Args('input') editProfileInput: EditProfileInput,
   ): Promise<EditProfileOutput> {
     try {
-      await this.userService.editProfile(authUser.id, editProfileInput);
+      await this.usersService.editProfile(authUser.id, editProfileInput);
       return { ok: true };
     } catch (error) {
       return {
